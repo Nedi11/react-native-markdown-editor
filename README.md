@@ -14,23 +14,23 @@ A professional-grade React Native component for editing and rendering Markdown w
 
 Install the package via NPM:
 
-\`\`\`bash
+```bash
 npm install react-native-markdown-editor-latex
-\`\`\`
+```
 
 ### Required Peer Dependencies
 
 Make sure to install the required peer dependencies for seamless functionality:
 
-\`\`\`bash
+```bash
 npm install react-native-pell-rich-editor react-native-markdown-display react-native-math-view react-native-webview markdown-it markdown-it-mathjax3
-\`\`\`
+```
 
 ## Usage
 
-The \`MarkdownEditor\` component provides a flexible interface for rendering and editing Markdown with LaTeX support. Below is a quick-start example.
+The `MarkdownEditor` component provides a flexible interface for rendering and editing Markdown with LaTeX support. Below is a quick-start example.
 
-\`\`\`javascript
+```javascript
 import React from 'react';
 import { View } from 'react-native';
 import { MarkdownEditor } from 'react-native-markdown-editor-latex';
@@ -43,8 +43,11 @@ const App = () => {
   return (
     <View style={{ flex: 1, padding: 20 }}>
       <MarkdownEditor
-        initialContent={\`# Welcome to Markdown Editor with LaTeX\nThis editor supports inline equations, such as $E=mc^2$, and block equations like below:\n$$
-        \\frac{a}{b} = \\frac{1}{2}\n$$\`}
+        initialContent={`# Welcome to Markdown Editor with LaTeX
+This editor supports inline equations, such as $E=mc^2$, and block equations like below:
+$$
+        \frac{a}{b} = \frac{1}{2}
+$$`}
         onContentChange={handleContentChange}
         editorStyles={{ backgroundColor: '#ffffff', padding: 10 }}
         markdownStyles={{ body: { color: '#333' } }}
@@ -54,46 +57,46 @@ const App = () => {
 };
 
 export default App;
-\`\`\`
+```
 
 ## Props
 
-### \`initialContent\`
-- **Type**: \`string\`
+### `initialContent`
+- **Type**: `string`
 - **Description**: Initial markdown content to be displayed in the editor. Accepts any valid Markdown and LaTeX syntax.
 
-### \`onContentChange\`
-- **Type**: \`(content: string) => void\`
+### `onContentChange`
+- **Type**: `(content: string) => void`
 - **Description**: Callback function that provides the updated content whenever changes are made in the editor.
 
-### \`editorStyles\`
-- **Type**: \`object\`
+### `editorStyles`
+- **Type**: `object`
 - **Description**: Custom styles for the rich text editor. Can be used to style the background, font, padding, etc.
 
-### \`markdownStyles\`
-- **Type**: \`object\`
+### `markdownStyles`
+- **Type**: `object`
 - **Description**: Custom styles for the Markdown display. Allows you to customize text color, background, font size, and more.
 
-### \`readOnly\`
-- **Type**: \`boolean\`
-- **Default**: \`false\`
-- **Description**: Set to \`true\` to enable read-only mode, where the component is used solely for viewing content.
+### `readOnly`
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Set to `true` to enable read-only mode, where the component is used solely for viewing content.
 
-### \`renderRules\`
-- **Type**: \`object\`
-- **Description**: Custom render rules for \`react-native-markdown-display\`, allowing you to modify how specific Markdown and LaTeX elements are displayed.
+### `renderRules`
+- **Type**: `object`
+- **Description**: Custom render rules for `react-native-markdown-display`, allowing you to modify how specific Markdown and LaTeX elements are displayed.
 
-### \`markdownItPlugins\`
-- **Type**: \`Array<(md: any) => void>\`
-- **Description**: Array of functions to add plugins to the \`markdown-it\` instance, enabling advanced Markdown extensions such as footnotes, tables, and more.
+### `markdownItPlugins`
+- **Type**: `Array<(md: any) => void>`
+- **Description**: Array of functions to add plugins to the `markdown-it` instance, enabling advanced Markdown extensions such as footnotes, tables, and more.
 
 ## Advanced Customization
 
 ### Using Custom Render Rules
-To customize how elements like LaTeX or specific Markdown elements are rendered, you can use \`renderRules\`. By default, this package includes render rules for handling inline and block LaTeX.
+To customize how elements like LaTeX or specific Markdown elements are rendered, you can use `renderRules`. By default, this package includes render rules for handling inline and block LaTeX.
 
 Example:
-\`\`\`javascript
+```javascript
 import { renderRules as defaultRenderRules } from 'react-native-markdown-editor-latex';
 
 const customRenderRules = {
@@ -102,16 +105,16 @@ const customRenderRules = {
 };
 
 <MarkdownEditor renderRules={customRenderRules} />
-\`\`\`
+```
 
 ### Adding Markdown-It Plugins
-To extend \`markdown-it\` functionality, use the \`markdownItPlugins\` prop to pass in additional plugins. For example:
+To extend `markdown-it` functionality, use the `markdownItPlugins` prop to pass in additional plugins. For example:
 
-\`\`\`javascript
+```javascript
 import markdownItEmoji from 'markdown-it-emoji';
 
 <MarkdownEditor markdownItPlugins={[markdownItEmoji]} />
-\`\`\`
+```
 
 ## Roadmap & Upcoming Features
 
