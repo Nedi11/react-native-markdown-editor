@@ -15,7 +15,7 @@ A professional-grade React Native component for editing and rendering Markdown w
 Install the package via NPM:
 
 ```bash
-npm install react-native-markdown-editor-latex
+npm install react-native-markdown-editor
 ```
 
 ### Required Peer Dependencies
@@ -33,7 +33,7 @@ The `MarkdownEditor` component provides a flexible interface for rendering and e
 ```javascript
 import React from 'react';
 import { View } from 'react-native';
-import { MarkdownEditor } from 'react-native-markdown-editor-latex';
+import { MarkdownEditor } from 'react-native-markdown-editor';
 
 const App = () => {
   const handleContentChange = (content) => {
@@ -97,7 +97,7 @@ To customize how elements like LaTeX or specific Markdown elements are rendered,
 
 Example:
 ```javascript
-import { renderRules as defaultRenderRules } from 'react-native-markdown-editor-latex';
+import { renderRules as defaultRenderRules } from 'react-native-markdown-editor';
 
 const customRenderRules = {
   ...defaultRenderRules,
@@ -115,6 +115,32 @@ import markdownItEmoji from 'markdown-it-emoji';
 
 <MarkdownEditor markdownItPlugins={[markdownItEmoji]} />
 ```
+
+## Issues & Troubleshooting
+
+### iOS Configuration for `react-native-svg`
+
+If you encounter issues with `react-native-svg` not being linked properly on iOS, follow these steps:
+
+1. **Add the Pod Entry**: In your Podfile, ensure `RNSVG` is added with the correct path:
+
+   ```ruby
+   pod 'RNSVG', :path => '../node_modules/react-native-svg'
+   ```
+
+2. **Install Pods**: After adding the entry, run the following commands in your project"s `ios` directory:
+
+   ```bash
+   cd ios
+   pod install
+   cd ..
+   ```
+
+3. **Rebuild Project**: In Xcode, go to `Product` > `Clean Build Folder`, then rebuild the project.
+
+### Dependency Warnings
+
+For any warnings related to `dependency.assets`, verify that all dependencies are up-to-date, especially if using older packages with newer versions of React Native.
 
 ## Roadmap & Upcoming Features
 
