@@ -1,12 +1,13 @@
 // src/MarkdownEditor.tsx
 import React, { useRef, useState, useEffect } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { RichEditor } from 'react-native-pell-rich-editor';
+import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor';
 import MarkdownIt from 'markdown-it';
 import markdownItMathjax from 'markdown-it-mathjax3';
 import Markdown from 'react-native-markdown-display';
 import HtmlToMarkdownConverter from './HtmlToMarkdownConverter';
 import { renderLatexInline, renderLatexBlock } from './LatexRenderer';
+
 
 interface MarkdownEditorProps {
   initialContent?: string;
@@ -14,13 +15,16 @@ interface MarkdownEditorProps {
   editorStyles?: any;
   markdownStyles?: any;
   readOnly?: boolean;
+  toolbar?: boolean;
+  toolbarActions?: string[];
+  toolbarStyles?: any;
+ 
 }
 
-// Initialize Markdown-It instances with and without MathJax support
 const markdownIt = new MarkdownIt().use(markdownItMathjax);
 const markdownItWithoutMathjax = new MarkdownIt();
 
-// Render rules to handle inline and block math in Markdown
+
 export const renderRules = {
   math_inline: (node: any, children: any, parent: any, styles: any) => {
     const content = node.content;
@@ -42,6 +46,9 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   editorStyles = {},
   markdownStyles = {},
   readOnly = false,
+  toolbar = true,
+  toolbarActions = ['bold', 'italic', 'underline'], // Default toolbar actions
+  toolbarStyles = {}, // Default empty object for custom styles
 }) => {
   const [content, setContent] = useState(initialContent);
   const [htmlContent, setHtmlContent] = useState('');
@@ -90,6 +97,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
 
       {/* Render Editor or Markdown View */}
       {isEditing ? (
+        <>
         <RichEditor
           ref={richEditorRef}
           initialContentHTML={markdownItWithoutMathjax.render(content)}
@@ -102,6 +110,25 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
             ...editorStyles,
           }}
         />
+        {toolbar && (
+            <RichToolbar
+              editor={richEditorRef}
+              actions={toolbarActions}
+              iconTint="black"
+              selectedIconTint="blue"
+              disabledIconTint="gray"
+              style={{
+                backgroundColor: '#f5f5f5',
+                borderTopWidth: 1,
+                borderTopColor: '#ddd',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                padding: 5,
+                ...toolbarStyles, 
+              }}
+            />
+          )}
+      </>
       ) : (
         <Markdown
           markdownit={markdownIt}

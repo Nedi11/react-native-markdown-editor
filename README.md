@@ -6,9 +6,20 @@ A professional-grade React Native component for editing and rendering Markdown w
 
 - **Markdown Editing & Rendering**: Switch between rich text editing and Markdown viewing seamlessly.
 - **LaTeX Support**: Render inline and block LaTeX equations with high fidelity.
-- **Customization Options**: Tailor the editor's behavior and appearance with custom styles, render rules, and plugins.
+- **Customization Options**: Tailor the editor's behavior and appearance with custom styles and plugins.
 - **Read-Only Mode**: Disable editing to use the component as a viewer for Markdown and LaTeX content.
 - **HTML to Markdown Conversion**: Automatically convert HTML to Markdown when switching between editor and viewer.
+- **Customizable Toolbar**: Easily configure the toolbar with your desired actions and styles.
+
+
+## Screenshots
+
+Here are some screenshots of the Markdown Editor in action:
+
+<div style="display: flex; flex-direction: row; justify-content: space-around;">
+  <img src="./src/assets/Screenshot2.png" alt="Screenshot 1" style="width: 30%; margin: 10px;" />
+  <img src="./src/assets/Screenshot.png" alt="Screenshot 2" style="width: 30%; margin: 10px;" />
+</div>
 
 ## Installation
 
@@ -51,6 +62,9 @@ $$`}
         onContentChange={handleContentChange}
         editorStyles={{ backgroundColor: '#ffffff', padding: 10 }}
         markdownStyles={{ body: { color: '#333' } }}
+        toolbar={true}
+        toolbarActions={['bold', 'italic', 'underline', 'bulletList', 'orderedList']}
+        toolbarStyles={{ backgroundColor: '#e0e0e0', borderRadius: 8, padding: 10 }}
       />
     </View>
   );
@@ -82,30 +96,24 @@ export default App;
 - **Default**: `false`
 - **Description**: Set to `true` to enable read-only mode, where the component is used solely for viewing content.
 
-### `renderRules`
+### `toolbar`
+- **Type**: `boolean`
+- **Default**: `true`
+- **Description**: Set to `true` to display the toolbar, and `false` to hide it.
+
+### `toolbarActions`
+- **Type**: `string[]`
+- **Description**: Array of actions for the toolbar. Customize the toolbar with actions like `'bold'`, `'italic'`, `'underline'`, etc.
+
+### `toolbarStyles`
 - **Type**: `object`
-- **Description**: Custom render rules for `react-native-markdown-display`, allowing you to modify how specific Markdown and LaTeX elements are displayed.
+- **Description**: Custom styles for the toolbar. You can style the background, padding, alignment, and more.
 
 ### `markdownItPlugins`
 - **Type**: `Array<(md: any) => void>`
 - **Description**: Array of functions to add plugins to the `markdown-it` instance, enabling advanced Markdown extensions such as footnotes, tables, and more.
 
 ## Advanced Customization
-
-### Using Custom Render Rules
-To customize how elements like LaTeX or specific Markdown elements are rendered, you can use `renderRules`. By default, this package includes render rules for handling inline and block LaTeX.
-
-Example:
-```javascript
-import { renderRules as defaultRenderRules } from 'react-native-markdown-editor';
-
-const customRenderRules = {
-  ...defaultRenderRules,
-  heading_1: (node, children, parent, styles) => <Text style={{ fontSize: 30, color: 'blue' }}>{children}</Text>
-};
-
-<MarkdownEditor renderRules={customRenderRules} />
-```
 
 ### Adding Markdown-It Plugins
 To extend `markdown-it` functionality, use the `markdownItPlugins` prop to pass in additional plugins. For example:
@@ -128,7 +136,7 @@ If you encounter issues with `react-native-svg` not being linked properly on iOS
    pod 'RNSVG', :path => '../node_modules/react-native-svg'
    ```
 
-2. **Install Pods**: After adding the entry, run the following commands in your project"s `ios` directory:
+2. **Install Pods**: After adding the entry, run the following commands in your project's `ios` directory:
 
    ```bash
    cd ios
@@ -143,20 +151,9 @@ If you encounter issues with `react-native-svg` not being linked properly on iOS
 For any warnings related to `dependency.assets`, verify that all dependencies are up-to-date, especially if using older packages with newer versions of React Native.
 
 ## Roadmap & Upcoming Features
-
-- **Custom Toolbar**: Configure a toolbar for the editor with controls for bold, italic, code block, etc.
-- **Syntax Highlighting**: Support for syntax highlighting in code blocks.
 - **Image Upload Support**: Integrated image uploading directly in the editor.
 - **Autosave Functionality**: Autosave with adjustable debounce timing.
 
-## Contributing
-
-We welcome contributions! To contribute:
-1. Fork this repository and create a new branch for your feature.
-2. Implement and test your changes.
-3. Submit a pull request with a clear description of your feature or fix.
-
-For major changes, please open an issue first to discuss the proposed feature.
 
 ## License
 
