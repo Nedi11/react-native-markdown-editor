@@ -17,7 +17,7 @@ A professional-grade React Native component for editing and rendering Markdown w
 Here are some screenshots of the Markdown Editor in action:
 
 <div style="display: flex; flex-direction: row; justify-content: space-around;">
-  <img src="./src/assets/Screenshot.png" alt="Screenshot 1" style="width: 30%; margin: 10px;" />
+  <img src="./src/assets/Screenshot2.png" alt="Screenshot 1" style="width: 30%; margin: 10px;" />
   <img src="./src/assets/Screenshot.png" alt="Screenshot 2" style="width: 30%; margin: 10px;" />
 </div>
 
