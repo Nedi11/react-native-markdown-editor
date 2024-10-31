@@ -5,6 +5,9 @@ interface MarkdownEditorProps {
     editorStyles?: any;
     markdownStyles?: any;
     readOnly?: boolean;
+    toolbar?: boolean;
+    toolbarActions?: string[];
+    toolbarStyles?: any;
 }
 export declare const renderRules: {
     math_inline: (node: any, children: any, parent: any, styles: any) => React.JSX.Element;
